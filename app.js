@@ -17,7 +17,10 @@ app.use(bodyParser.json());
 workers.start(600); // Scrapea y actualiza los valores cada 600 segundos (10 minutos)
 
 app.get('/api/getdata', function(req, res) { // End point que me devuelve un objeto con los últimos valores de la data scrapeada
-    res.send(JSON.stringify(workers.getData()));
+    if (req.headers.pass == 'inter.net.ar123')
+        res.send(JSON.stringify(workers.getData()));
+    else
+        res.status(403).send();
 });
 
 app.listen(app.get('port'), () => {
