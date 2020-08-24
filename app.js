@@ -14,10 +14,10 @@ console.log(`App: Puerto del servidor seteado en: ${app.get('port')}`);
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-workers.start(600); // Scrapea y actualiza los valores cada 600 segundos (10 minutos)
+workers.start(10); // Scrapea y actualiza los valores cada 600 segundos (10 minutos)
 
 app.get('/api/getdata', function(req, res) { // End point que me devuelve un objeto con los últimos valores de la data scrapeada
-    if (req.headers.pass == 'inter.net.ar123')
+    if (req.headers.pass == env.process.PASS || 'secreto')
         res.send(JSON.stringify(workers.getData()));
     else
         res.status(403).send();
