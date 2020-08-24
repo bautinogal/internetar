@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 workers.start(100); // Scrapea y actualiza los valores cada 600 segundos (10 minutos)
 
 app.get('/api/getdata', function(req, res) { // End point que me devuelve un objeto con los últimos valores de la data scrapeada
-    if (req.headers.pass == env.process.PASS || 'secreto')
+    if (req.headers.pass == process.env.PASS || 'secreto')
         res.send(JSON.stringify(workers.getData()));
     else
         res.status(403).send();
