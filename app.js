@@ -14,7 +14,7 @@ console.log(`App: Puerto del servidor seteado en: ${app.get('port')}`);
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-workers.start(10); // Scrapea y actualiza los valores cada 600 segundos (10 minutos)
+workers.start(100); // Scrapea y actualiza los valores cada 600 segundos (10 minutos)
 
 app.get('/api/getdata', function(req, res) { // End point que me devuelve un objeto con los últimos valores de la data scrapeada
     if (req.headers.pass == env.process.PASS || 'secreto')
